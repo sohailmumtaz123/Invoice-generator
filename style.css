@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+body{
+    background-color: #EFF2F0 !important;
+    padding: 50px 200px;
+}
+.invoice_basics{
+    margin: 10px 0 50px;
+}
+.first_line{
+    display: flex;
+}
+.first_col{
+    width: auto;
+    max-width: 220px;
+}
+.second_col{
+    width:100%;
+}
+/* ======================= */
+.user_detials{
+    display: flex;
+}
+.invoice_from{
+    width: auto;
+    max-width: 280px;
+}
+.billed_to{
+    width: auto;
+    max-width: 280px;
+    padding-left: 50px;
+}
+/* ------------------------ */
+.items{
+    padding: 30px 0 0 0;
+    border-bottom: 1px solid gainsboro;
+}
+/* ------------------------ */
+.top{
+    margin-bottom: 30px;
+}
+.top h3{
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0;
+}
+.top .right{
+    text-align: right;
+}
+p{
+    font-size: 16px;
+    font-weight: 600;
+    /* color:rgb(63, 63, 63) */
+}
+.first_col:nth-child(1), p.from_address, p.to_address,.item_head,p.copyright{
+    color:#8C8F93 !important;
+}
+.total_section, .footer .row{
+    margin: 30px 0;
+}

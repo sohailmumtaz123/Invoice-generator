@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Invoice Generator</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='js/main.css'>
+    <script src='js/main.js' defer></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script> -->
+    
+    <script src="js/jspdf.debug.js"></script>
+    <script src="js/html2canvas.min.js"></script>
+    <script src="js/html2pdf.min.js"></script>
+
+</head>
+<body class="body">
+    <div class="top" id="top">
+        <div class="line">
+            <div style="width: 40%;"><hr/></div>
+            <p class="name">Greatweek</p>
+            <div style="width: 40%;"><hr/></div>
+        </div>
+    </div>
+
+    <div class="body-wrap invoice-input" id="invoice-input">
+        <div>
+            <a href="#"><img src="js/arrow.png" width="40px" height="40px"></a>
+        </div>
+        <div class="copy">
+            <h1>Easily create invoices for free.</h1>
+            <p>Preview, download, and share your invoice as a PDF.
+                Get free advanced features with a Found account.</p>
+        </div>
+        <form>
+            <h3>Your info (required)</h3>
+            <input type="text" class="name-from required" placeholder="Your Name"><br>
+            <input type="email" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" class="mail-from required" placeholder="Your Email">
+            <!-- ---Add more Client side---- -->
+            <p class="show_more more">Add more detials</p>
+            <div id="more-details">
+                <p>Phone Number</p>
+                <input type="tel" class="from_phone" placeholder="Optional">
+                <p>Business Name</p>
+                <input type="text" class="from_business" placeholder="Optional">
+            </div>
+            <p class="hide_more more">Hide more detials</p>
+            
+            <br><br>
+
+            <h3>Bill to (required) </h3>
+            <input type="text" class="to-name required" placeholder="Your Name"><br>
+            <input type="email" pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" class="to-mail required" placeholder="Your Email">
+            <!-- ----Add more TO side ----- -->           
+            <p class="show_more2 more">Add more detials</p>
+            <div id="more-details2">
+                <p>Phone Number</p>
+                <input type="tel" class="to_phone" placeholder="Optional">
+                <p>Business Name</p>
+                <input type="text" class="to_business" placeholder="Optional">
+            </div>
+            <p class="hide_more2 more">Hide more detials</p>
+            <br><br>
+
+            <h3 id="item_heading">Item 1 (required) </h3>
+            <div id="itemContainer">
+                <div class="item">
+                    <p>Description</p>
+                    <input type="text" name="description" class="required" id="Description" placeholder="Item name, hourly rate, etc"><br>
+                    <table>
+                        <tr>
+                            <td>
+                                <lable for="Price">Price</lable>
+                                <input type="number" name="Price" onchange="calculateTotal()" class="required" id="Price" placeholder="$0,00" value="">
+                            </td>
+                            <td>
+                                <lable for="Quantity">Quantity</lable>
+                                <input type="number" name="Quantity" onchange="calculateTotal()" id="quantity" placeholder="1" value="1">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <p class="more" id="addBtn">Add another item</p>
+           
+
+            <h3>More details </h3>
+            <lable for="invoiceID">Invoice ID</lable>
+            <input type="text" name="invoiceID" id="invoiceID" placeholder="#001" value="#001">
+            <p class="lable">Due Date</p>
+            <select name="due-date" id="due-date">
+                <option value="24">Upon Receipt</option>
+                <option value="168">In a week</option>
+                <option value="336">In 2 weeks</option>
+                <option value="720">In a month</option>
+              </select>
+            <lable for="note">Additional note</lable>
+            <input type="text" name="note" id="Add_note" placeholder="Payment methods, terms, sales tax, etc" value=""><br>
+            
+            <br><br>
+
+            <div class="total">
+                <h2>Total Due</h2>
+                <p>$<span  id="total">0.00</span></p>
+            </div>
+            <br><br><br>
+            <p style="text-align:center">By creating this invoice, you are agreeing to our terms of service and privacy policy.</p>
+
+        </form>
+        <div class="buttons">
+            <button id="preview">Preview</button>    
+            <button id="download">Download PDF</button>
+         </div>
+    </div>
+    <!-- ---------Invoice Preview ------------------- -->
+    <div class="body-wrap invoice-preview" id="invoice-preview">
+        
+        <div class="copy">
+            <h2>Invoice from <span id="from-name">Sohail Mumtaz</span></h2>
+            <p>Due <span id="invoice-date">January 3, 2023</span></p>
+        </div>
+        
+        <table class="top_table">
+            <tr>
+                <td><b>DETAILS</b></td>
+                <td>Invoice: <span id="invoice">#000283</span></td>
+                <td>Due: <span id="date">January 3, 2023</span></td>
+            </tr>
+            <tr>
+                <td><b>BILL TO</b></td>
+                <td><p id="to-name">Denial Bessmert </p></td>
+                <td><p id="to-mail">daniel@greatweek.com</p></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td id="to_business"></td>
+                <td id="to_phone"></td>
+            </tr>
+        </table>
+        
+        <div><hr></div>
+        
+        <div class="business">
+            <h3>Business Details</h3>
+            <table class="details">
+                <tr>
+                    <td><b>Name: </b><span id="from">Sohail Mumtaz</span></td>
+                    <td><b>Email: </b><span id="from-mail">suhailq046@gmail.com</span></td>
+                </tr>
+                <tr>
+                    <td id="from_phone"></td>
+                    <td id="from_business"></td>
+                </tr>
+            </table>
+            
+        </div>
+        <div><hr></div>
+
+        <div class="business">
+            <h3>Items</h3>
+            <div class="invoice-items">
+                <table>
+                    <tr class="details">
+                        <td id="item-description">This is Items description</td>
+                        <td>$<span id="item-price">0.00</span></td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+        <div><hr></div>
+        
+        <div class="business">
+            <div class="details">
+                <p>Total Due</p>
+                <p>$<span id="total-price">0.00</span></p>
+            </div>
+        </div>
+            <br><br>
+        <div>
+            <h3>Note</h3>
+            <p id="note">This is Additional Note.</p>
+        </div>
+    </div>
+
+    <div class="buttons" id="download_pdf">
+        <a  href="javascript:void(0)" class="btn-download" id="btn-download">Download PDF  </a>
+     </div>
+    
+</body>
+</html>

@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+	background-color: #fff;
+	margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.top{
+  background-color: #EFF2F0;
+  min-height: 300px;
+  padding-top: 80px;
+}
+.line{
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.line .name{
+  margin: 0 20px;
+}
+.body-wrap{
+  max-width: 800px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  margin-top: -100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.body-wrap .copy{
+  text-align: center;
+  margin: 30px 0;
+}
+input,select{
+  border: 1px solid #C9CEC9;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 16px;
+  padding:8px;
+  outline: none;
+}
+input:focus{
+  border: 1px solid #6c6e6c;
+}
+form h3{
+  margin-top: 15px;
+}
+form lable{
+  clear: both;
+  display: table;
+  margin-top: 15px !important;
+}
+.total h2{
+  float: left;
+  margin-top: 0px;
+}
+.total p{
+  float: right;
+}
+.buttons{
+  text-align: center;
+  padding: 15px;
+}
+.buttons button{
+  cursor: pointer;
+  margin-top: 20px;
+  padding:10px 20px;
+  border-radius: 50px;
+  background-color: black;
+  color: #fff;
+}
+
+/* ----------PDf preview ----------- */
+.invoice-preview{
+  margin-top: 0px;
+  background-color: red;
+}
+.invoice-preview .copy{
+  margin: 50px 0 50px 0;
+}
+.invoice-preview .line{
+  margin: 0px 0 50px 0 ;
+}
+table{
+  width: 100%;
+ 
+}
+.top_table{
+  margin-bottom: 30px;
+}
+table tr td{
+  width: 33%;
+}
+.more{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+  color: green;
+  cursor: pointer;
+}
+#more-details p, #more-details2 p, .lable{
+  margin-top: 15px;
+}
+.hide_more , .hide_more2{
+  display: none;
+}
+#more-details , #more-details2{
+  display: none;
+}
+
+.invoice-preview{
+  display:none;
+}
+.invoice-input{
+  /* display: none; */
+}
+
+.business{
+  margin: 25px 0 20px 0;
+}
+.business table{
+  margin-top: 10px;
+}
+.business table tr{
+  margin-top: 10px;
+}
+.business table td:nth-child(2){
+  text-align: right;
+}
+
+
+.item table td:nth-child(1){
+  padding-right: 10px;  
+}
+.item {
+  border:1px solid #e7ebe7;
+  padding:15px;
+  border-radius: 10px;
+  margin: 10px 0;
+  position: relative;
+}
+.item table {
+  margin:0px;
+}
+#item_heading{
+  margin-bottom: 10px;
+}
+.deleteBtn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color:red;
+  padding: 3px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: transparent;
+  border-radius: 50px;
+  border: 1px solid red;
+  cursor: pointer;
+}
+
+
+.business .details p:nth-child(1){
+  float: left;
+}
+.business .details p:nth-child(2){
+  float: right;
+}
+
+#download_pdf a{
+  margin-top: 20px;
+  padding:10px 20px;
+  border-radius: 50px;
+  background-color: black;
+  color: #fff;
+  text-decoration: none;
+  
+}
+#download_pdf{
+  display: none;
+}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
